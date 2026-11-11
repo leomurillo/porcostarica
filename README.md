@@ -2,6 +2,8 @@
 
 **[Open Por Costa Rica](https://porcostarica.com/)** · [Español](https://porcostarica.com/es/) · [English](https://porcostarica.com/en/)
 
+Questions or feedback? [hola@porcostarica.com](mailto:hola@porcostarica.com)
+
 Find the province, canton, district, and postal code of a location in Costa Rica. The site supports Spanish and English. Select a point on the map, enter coordinates, or use device location.
 
 Link directly to a point with decimal-degree `lat` and `lng` query parameters. For example, [open San Vicente, Moravia (11401)](https://porcostarica.com/?lat=9.962166&lng=-84.048556). The same parameters work on `/es/` and `/en/`. You can also use `lon` for longitude.
