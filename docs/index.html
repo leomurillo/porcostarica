@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f6f5ed">
+  <meta name="description" content="Encontrá la provincia, cantón, distrito y código postal de cualquier punto de Costa Rica.">
+  <title>Por Costa Rica · Localizador</title>
+  <link rel="stylesheet" href="leaflet.css"><link rel="stylesheet" href="site.css">
+  <script defer src="leaflet.js"></script><script defer src="site.js"></script>
+</head>
+<body>
+  <header><div class="brand"><span class="brand-mark" aria-hidden="true">◈</span>Por Costa Rica</div>
+    <nav aria-label="Idioma / Language"><button lang="es" id="es" aria-label="Español">ES</button><button lang="en" id="en" aria-label="English">EN</button></nav>
+  </header>
+  <main>
+    <section class="panel">
+      <div class="intro" id="intro"><h1><span data-t="heading">¿Dónde en</span> <em>Costa Rica<span data-t="punct">?</span></em></h1><p data-t="intro">Encontrá tu provincia, cantón, distrito y código postal con tu ubicación o tocando el mapa.</p></div>
+      <section id="answer" hidden aria-live="polite">
+        <small data-t="district">Distrito</small><h2 id="districtName"></h2>
+        <dl><div><dt data-t="province">Provincia</dt><dd id="province"></dd></div><div><dt data-t="canton">Cantón</dt><dd id="canton"></dd></div></dl>
+        <div class="postal"><div><small data-t="postal">Código postal</small><strong id="code"></strong></div><button id="copy" data-t="copy">Copiar</button></div>
+      </section>
+      <button id="locate" class="primary"><span class="target" aria-hidden="true"></span><span data-t="locate">Usar mi ubicación</span></button>
+      <p id="status" role="status"></p>
+      <details id="coords"><summary data-t="coords">Ingresar coordenadas</summary>
+        <form id="pointForm"><label for="point" data-t="latlon">Latitud, longitud</label><div class="inputs"><input id="point" placeholder="9.9333, -84.0833" required autocomplete="off"><button data-t="find">Buscar</button></div></form>
+      </details>
+    </section>
+    <section class="atlas" aria-labelledby="mapTitle">
+      <div class="atlas-head"><span class="swatch"></span><h2 id="mapTitle" data-t="map">Mapa de distritos</h2><span class="map-country">CR</span></div>
+      <div class="mapwrap"><div id="map"></div><span class="compass" aria-hidden="true">N<i></i></span>
+        <div class="controls"><button id="plus">+</button><button id="minus">−</button><button id="reset" class="reset">⤢</button></div>
+        <button id="center" hidden data-t="center">Consultar centro del mapa</button>
+      </div>
+      <div class="atlas-foot"><span class="dot"></span><span id="mapHint" data-t="tap">Tocá un punto para consultarlo</span><span id="readout"></span></div>
+    </section>
+  </main>
+  <footer><span class="country"><i aria-hidden="true"></i>Costa Rica</span><button id="sources" data-t="sources">Fuentes del mapa</button></footer>
+  <dialog id="info"><button id="close">×</button><h2 data-t="sources">Fuentes del mapa</h2><p data-t="sourceText"></p><p><a href="https://geos.snitcr.go.cr/be/IGN_5_CO/wfs?service=WFS&amp;request=GetCapabilities">IGN · SNIT ↗</a> · <a href="https://sucursal.correos.go.cr/web/codigoPostal">Correos de Costa Rica ↗</a></p><p data-t="carto"></p></dialog>
+</body></html>
