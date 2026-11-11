@@ -1,16 +1,23 @@
 <!doctype html>
 <html lang="es">
 <head>
+  <base href="/">
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#f6f5ed">
   <meta name="description" content="Encontrá la provincia, cantón, distrito y código postal de cualquier punto de Costa Rica.">
-  <title>Por Costa Rica · Localizador</title>
+  <title>Código postal y distrito de Costa Rica por ubicación | Por Costa Rica</title>
+  <link rel="icon" type="image/png" sizes="192x192" href="flag.png">
+  <link rel="apple-touch-icon" href="flag.png">
+  <link rel="canonical" href="https://porcostarica.com/">
+  <link rel="alternate" hreflang="es" href="https://porcostarica.com/es/">
+  <link rel="alternate" hreflang="en" href="https://porcostarica.com/en/">
+  <link rel="alternate" hreflang="x-default" href="https://porcostarica.com/">
   <link rel="stylesheet" href="leaflet.css"><link rel="stylesheet" href="site.css">
-  <script defer src="leaflet.js"></script><script defer src="site.js"></script>
+  <script defer src="leaflet.js"></script><script defer src="analytics.js"></script><script type="module" src="site.js"></script>
 </head>
 <body>
-  <header><div class="brand"><span class="brand-mark" aria-hidden="true">◈</span>Por Costa Rica</div>
-    <nav aria-label="Idioma / Language"><button lang="es" id="es" aria-label="Español">ES</button><button lang="en" id="en" aria-label="English">EN</button></nav>
+  <header><div class="brand"><img src="flag.png" width="35" height="35" alt="">Por Costa Rica</div>
+    <nav aria-label="Idioma / Language"><a href="es/" lang="es" id="es" aria-label="Español">ES</a><a href="en/" lang="en" id="en" aria-label="English">EN</a></nav>
   </header>
   <main>
     <section class="panel">
