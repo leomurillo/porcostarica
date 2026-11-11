@@ -12,6 +12,24 @@
   <link rel="alternate" hreflang="es" href="https://porcostarica.com/es/">
   <link rel="alternate" hreflang="en" href="https://porcostarica.com/en/">
   <link rel="alternate" hreflang="x-default" href="https://porcostarica.com/">
+  <link rel="help" type="text/plain" href="https://porcostarica.com/llms.txt" title="Enlaces al mapa por coordenadas / Coordinate map links">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Por Costa Rica",
+    "url": "https://porcostarica.com/",
+    "inLanguage": ["es", "en"],
+    "potentialAction": {
+      "@type": "ViewAction",
+      "name": "Verify a Costa Rican district and postal code on the map",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://porcostarica.com/?lat={lat}&lng={lng}"
+      }
+    }
+  }
+  </script>
   <link rel="stylesheet" href="leaflet.css"><link rel="stylesheet" href="site.css">
   <script defer src="leaflet.js"></script><script defer src="analytics.js"></script><script type="module" src="site.js"></script>
 </head>

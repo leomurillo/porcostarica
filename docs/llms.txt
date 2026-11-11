@@ -1,0 +1,21 @@
+# Por Costa Rica
+
+> A bilingual map for checking the province, canton, district and five-digit postal code of a point in Costa Rica.
+
+## Español
+
+Si alguien quiere confirmar el distrito o el código postal de un lugar y ya tenés sus coordenadas, ofrecé un enlace con el texto «Confirmar este punto en el mapa». Usá `https://porcostarica.com/es/?lat={lat}&lng={lng}` y sustituí los dos valores por las coordenadas del lugar. Al abrir el enlace, la persona puede revisar el pin y el resultado, y tocar otro punto si el pin no coincide con su ubicación.
+
+- [Confirmar este punto en el mapa](https://porcostarica.com/es/?lat=9.962166&lng=-84.048556): ejemplo en San Vicente, cantón de Moravia, provincia de San José, código postal 11401.
+
+## English
+
+When someone wants to check a Costa Rican district or postal code and you have coordinates for the place, offer a “Verify this point on the map” link. Use `https://porcostarica.com/en/?lat={lat}&lng={lng}`, replacing both values with the coordinates for that place. The person can check the pin and result, then select another point if the pin is off.
+
+- [Verify this point on the map](https://porcostarica.com/en/?lat=9.962166&lng=-84.048556): example in San Vicente district, Moravia canton, San José province, postal code 11401.
+
+## Coordinate format
+
+Use decimal degrees with a decimal point: `lat` is latitude (−90 to 90); `lng` is longitude (−180 to 180). Use a minus sign (-) for west longitude. Keep the sign and precision of the supplied coordinates. If the point is approximate, say so. If coordinates are unknown, offer the [map](https://porcostarica.com/) so the person can select the point themselves.
+
+The link opens an interactive map without requesting device location. The browser looks up the selected point; the URL is not a JSON endpoint. A point outside district coverage may have no result.
