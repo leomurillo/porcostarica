@@ -97,6 +97,10 @@ function inspectRing(ring,lat,lon) {
   return {inside,distance:Math.sqrt(distance)};
 }
 async function lookup(lat,lon,accuracy=0,zoom=true) {
+  clearCoordinateParams();
+  return lookupPoint(lat,lon,accuracy,zoom);
+}
+async function lookupPoint(lat,lon,accuracy=0,zoom=true) {
   const request=++ticket;point=[lat,lon];copied=false;result=null;
   for(const layer of [highlight,pin,accuracyCircle]) if(layer)map.removeLayer(layer);
   pin=L.marker(point,{keyboard:false,interactive:false,icon:L.divIcon({className:"",html:'<div class="pin"></div>',iconSize:[25,25],iconAnchor:[12,28]})}).addTo(map);
@@ -138,11 +142,48 @@ $("pointForm").onsubmit=e=>{
   if(!match||Math.abs(+match[1])>90||Math.abs(+match[2])>180){setStatus("invalid");return;}
   lookup(+match[1],+match[2]);
 };
+const coordinateKeys = ["lat", "lng", "lon"];
+
+function updateLanguageLinks() {
+  for (const language of ["es", "en"]) {
+    const link = new URL($(language).href);
+    link.search = location.search;
+    $(language).href = link.href;
+  }
+}
+
+function clearCoordinateParams() {
+  const url = new URL(location.href);
+  if (!coordinateKeys.some(key => url.searchParams.has(key))) return;
+  for (const key of coordinateKeys) url.searchParams.delete(key);
+  history.replaceState(null, "", url);
+  updateLanguageLinks();
+}
+
+function lookupFromUrl() {
+  const params = new URLSearchParams(location.search);
+  if (!coordinateKeys.some(key => params.has(key))) return;
+  const latitudes = params.getAll("lat");
+  const longitudes = [...params.getAll("lng"), ...params.getAll("lon")];
+  const decimal = /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/;
+  const lat = Number(latitudes[0]), lon = Number(longitudes[0]);
+  if (latitudes.length !== 1 || longitudes.length !== 1 ||
+      !decimal.test(latitudes[0].trim()) || !decimal.test(longitudes[0].trim()) ||
+      Math.abs(lat) > 90 || Math.abs(lon) > 180) {
+    $("coords").open = true;
+    setStatus("invalid");
+    return;
+  }
+  $("point").value = lat + ", " + lon;
+  lookupPoint(lat, lon);
+}
 $("copy").onclick=async()=>{try{await navigator.clipboard.writeText($("code").textContent);copied=true;render();}catch{setStatus("copyFailed");}};
 map.on("click",e=>lookup(e.latlng.lat,e.latlng.lng));
 const centerLookup=()=>{const p=map.getCenter();lookup(p.lat,p.lng);};
 $("map").onkeydown=e=>{if(e.target!==$("map"))return;if(e.key.startsWith("Arrow"))$("center").hidden=false;if(e.key==="Enter"){e.preventDefault();centerLookup();}};
 $("center").onclick=centerLookup;$("plus").onclick=()=>map.zoomIn();$("minus").onclick=()=>map.zoomOut();
-$("reset").onclick=()=>{++ticket;result=null;point=null;for(const layer of [highlight,pin,accuracyCircle])if(layer)map.removeLayer(layer);national();setStatus("");};
+$("reset").onclick=()=>{++ticket;result=null;point=null;clearCoordinateParams();for(const layer of [highlight,pin,accuracyCircle])if(layer)map.removeLayer(layer);national();setStatus("");};
 $("sources").onclick=()=>$("info").showModal();$("close").onclick=()=>$("info").close();
 drawLabels();render();
+updateLanguageLinks();
+lookupFromUrl();

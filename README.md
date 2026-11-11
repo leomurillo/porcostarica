@@ -4,6 +4,8 @@
 
 Find the province, canton, district, and postal code of a location in Costa Rica. The site supports Spanish and English. Select a point on the map, enter coordinates, or use device location.
 
+Link directly to a point with decimal-degree `lat` and `lng` query parameters. For example, [open San Vicente, Moravia (11401)](https://porcostarica.com/?lat=9.962166&lng=-84.048556). The same parameters work on `/es/` and `/en/`. You can also use `lon` for longitude.
+
 Run `python -m http.server 8000 --directory docs` from the repository root and open <http://localhost:8000/>. GitHub Pages can serve this directory from the main branch.
 
 After editing homepage markup or translations, run `node generate-pages.mjs` and commit the generated language pages along with your changes.
