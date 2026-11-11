@@ -14,9 +14,9 @@ After editing homepage markup or translations, run `node generate-pages.mjs` and
 
 ## Measuring traffic
 
-1. In [Google Analytics](https://analytics.google.com/), create a GA4 property for Por Costa Rica and a **Web** data stream for `https://porcostarica.com`. Turn off **Enhanced measurement** if you only want page views and the explicit lookup event.
-2. Copy the stream's public Measurement ID (starts with `G-`) into the empty `gaMeasurementId` string in [docs/analytics.js](docs/analytics.js). Commit to `main`. No Analytics tag loads until this is set.
-3. After deployment, visit the production site and complete one lookup. Check **Reports → Realtime** for a page view and a `district_lookup` event. This custom event includes the interface language and omits the coordinates, postal code and district name. Mark it as a **key event** to measure the share of sessions that complete a lookup.
+[docs/analytics.js](docs/analytics.js) loads the published Google tag (`GTM-NXG6LJ6T`, GA4 stream `G-NKR3PCB521`) on the production domain only. It reports page locations without query strings or fragments. A successful lookup sends `district_lookup` with `interface_language`; it does not include the coordinates, district name or postal code.
+
+To check collection, open the production site, find a district and look for `page_view` and `district_lookup` in [Google Analytics](https://analytics.google.com/) under **Reports → Realtime**. Mark `district_lookup` as a **key event** to measure the share of sessions with a successful lookup.
 
 ## Google Search
 

@@ -73,6 +73,7 @@ for(const code of ["en","es"]) $(code).onclick=event=>{
   if(event.ctrlKey || event.metaKey || event.shiftKey || event.altKey)return;
   event.preventDefault();
   history.replaceState(null,"",$(code).href);
+  window.gtag?.("set", "page_location", location.origin + location.pathname);
   document.querySelector('link[rel="canonical"]').href="https://porcostarica.com/"+code+"/";
   document.querySelector('meta[name="description"]').content=words[code].intro;
   lang=code;try {localStorage.setItem("porcr-language",code);} catch {}
