@@ -1,5 +1,6 @@
 export default {
   es: {
+    sharePin:"Compartir ubicación", copyLink:"Copiar enlace", linkCopied:"Enlace copiado", manualCopy:"Seleccioná y copiá el enlace.",
     title:"Código postal y distrito de Costa Rica por ubicación | Por Costa Rica", heading:"¿Dónde en", punct:"?", intro:"Encontrá tu provincia, cantón, distrito y código postal con tu ubicación o tocando el mapa.",
     district:"Distrito", province:"Provincia", canton:"Cantón", postal:"Código postal", copy:"Copiar", copied:"Copiado",
     locate:"Usar mi ubicación", coords:"Ingresar coordenadas", latlon:"Latitud, longitud", find:"Buscar",
@@ -14,6 +15,7 @@ export default {
     pacific:"Océano Pacífico", caribbean:"Mar Caribe", keyboard:"Mapa de Costa Rica. Usá las flechas para moverlo y Enter para consultar el centro."
   },
   en: {
+    sharePin:"Share location", copyLink:"Copy link", linkCopied:"Link copied", manualCopy:"Select and copy the link.",
     title:"Costa Rica postal code and district finder | Por Costa Rica", heading:"Where in", punct:"?", intro:"Find your province, canton, district and postal code using your location or a point on the map.",
     district:"District", province:"Province", canton:"Canton", postal:"Postal code", copy:"Copy", copied:"Copied",
     locate:"Use my location", coords:"Enter coordinates", latlon:"Latitude, longitude", find:"Find",

@@ -67,6 +67,10 @@ function render() {
   $("copy").textContent=copied?t.copied:t.copy;
   $("mapHint").textContent=t[point?"selected":"tap"];
   $("readout").textContent=point?point.map(n=>n.toFixed(4)).join(", "):"";
+  $("pinActions").hidden = !point;
+  $("sharePin").hidden = typeof navigator.share !== "function";
+  $("manualLink").hidden = true;
+  $("shareNotice").textContent = "";
 }
 function setStatus(key){statusKey=key;render();}
 for(const code of ["en","es"]) $(code).onclick=event=>{
@@ -144,6 +148,41 @@ $("pointForm").onsubmit=e=>{
   lookup(+match[1],+match[2]);
 };
 const coordinateKeys = ["lat", "lng", "lon"];
+
+function pinnedUrl() {
+  const url = new URL("/" + lang + "/", "https://porcostarica.com");
+  url.searchParams.set("lat", point[0].toFixed(10));
+  url.searchParams.set("lng", point[1].toFixed(10));
+  return url.href;
+}
+
+function offerManualCopy(url) {
+  const field = $("manualLink");
+  field.value = url;
+  field.hidden = false;
+  field.focus();
+  field.select();
+  $("shareNotice").textContent = words[lang].manualCopy;
+}
+
+$("copyLink").onclick = async () => {
+  const url = pinnedUrl();
+  try {
+    await navigator.clipboard.writeText(url);
+    if (point && pinnedUrl() === url) $("shareNotice").textContent = words[lang].linkCopied;
+  } catch {
+    if (point && pinnedUrl() === url) offerManualCopy(url);
+  }
+};
+
+$("sharePin").onclick = async () => {
+  const url = pinnedUrl();
+  try {
+    await navigator.share({title: "Por Costa Rica", url});
+  } catch (error) {
+    if (error.name !== "AbortError" && point && pinnedUrl() === url) offerManualCopy(url);
+  }
+};
 
 function updateLanguageLinks() {
   for (const language of ["es", "en"]) {

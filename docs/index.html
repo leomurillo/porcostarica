@@ -47,6 +47,12 @@
       </section>
       <button id="locate" class="primary"><span class="target" aria-hidden="true"></span><span data-t="locate">Usar mi ubicación</span></button>
       <p id="status" role="status"></p>
+      <div id="pinActions" hidden>
+        <button id="sharePin" hidden data-t="sharePin">Compartir ubicación</button>
+        <button id="copyLink" data-t="copyLink">Copiar enlace</button>
+        <span id="shareNotice" role="status"></span>
+        <input id="manualLink" type="url" readonly hidden aria-labelledby="copyLink">
+      </div>
       <details id="coords"><summary data-t="coords">Ingresar coordenadas</summary>
         <form id="pointForm"><label for="point" data-t="latlon">Latitud, longitud</label><div class="inputs"><input id="point" placeholder="9.9333, -84.0833" required autocomplete="off"><button data-t="find">Buscar</button></div></form>
       </details>
